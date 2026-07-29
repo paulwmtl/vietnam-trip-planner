@@ -6,189 +6,167 @@
 <title>Vietnam Reise · September 2026</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-  :root{
-    --coral:#D85A30; --purple:#7F77DD; --teal:#1D9E75;
-    --bg:#14161a; --panel:#1d2026; --panel2:#24282f;
-    --text:#e8e6e1; --muted:#9a988f; --border:#33373f;
-  }
-  *{box-sizing:border-box; margin:0; padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; overflow:hidden}
-  header{padding:14px 22px; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
-  header h1{font-size:19px; font-weight:600}
-  header .sub{font-size:13px; color:var(--muted)}
-  header .count{margin-left:auto; font-size:13px; color:var(--muted)}
-  main{flex:1; display:flex; min-height:0; height:100%}
-  #map{flex:1; min-width:0; height:100%; background:#fff}
-  aside{width:400px; max-width:45vw; border-left:1px solid var(--border); display:flex; flex-direction:column; min-height:0}
-  #detail{padding:16px 18px; border-bottom:1px solid var(--border); background:var(--panel); min-height:150px}
-  #detail .dimg{width:100%; height:170px; object-fit:cover; border-radius:10px; margin-bottom:12px; display:block; background:var(--panel2)}
-  #detail .credit{font-size:10.5px; color:var(--muted); margin-top:8px; opacity:.7}
-  #detail .dname{font-size:16px; font-weight:600; display:flex; align-items:center; gap:9px}
-  #detail .dregion{font-size:12px; color:var(--muted); margin-left:auto}
-  #detail .dwhat{font-size:13px; color:var(--muted); margin:8px 0 10px; line-height:1.5}
-  #detail ul{padding-left:18px; font-size:13px; line-height:1.7}
-  #detail .note{margin-top:10px; font-size:12.5px; color:#e8b04b; line-height:1.5}
-  #list{flex:1; overflow-y:auto; padding:10px 12px 20px}
-  .gh{font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:14px 6px 6px; display:flex; align-items:center; gap:8px}
-  .item{display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:8px; cursor:pointer; border:1px solid transparent; background:transparent; color:var(--text); font-size:13.5px; text-align:left}
-  .item:hover{background:var(--panel2)}
-  .item.sel{background:var(--panel2); border-color:var(--border)}
-  .item input{accent-color:var(--teal); width:15px; height:15px; cursor:pointer; flex:0 0 15px}
-  .item.done .name{text-decoration:line-through; color:var(--muted)}
-  .dot{width:10px; height:10px; border-radius:50%; flex:0 0 10px}
-  .name{flex:1}
-  .pinmark{width:22px; height:22px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.5)}
-  .pinmark.sel{width:28px; height:28px; border-color:#ffd76a}
-  .leaflet-popup-content-wrapper{background:var(--panel); color:var(--text); border-radius:10px}
-  .leaflet-popup-tip{background:var(--panel)}
-  .leaflet-popup-content{font-size:13px; line-height:1.5; margin:12px 16px}
-  .leaflet-popup-content b{font-size:14px}
-  .leaflet-popup-content .pw{color:var(--muted); display:block; margin-top:4px}
-  @media (max-width:760px){
-    main{flex-direction:column}
-    #map{flex:0 0 45vh}
-    aside{width:100%; max-width:none; flex:1; border-left:none; border-top:1px solid var(--border)}
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; width: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #14161a;
+  color: #e8e6e1;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  padding: 14px 22px;
+  border-bottom: 1px solid #33373f;
+  background: #14161a;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+header h1 { font-size: 19px; font-weight: 600; }
+header .sub { font-size: 13px; color: #9a988f; }
+header .count { margin-left: auto; font-size: 13px; color: #9a988f; }
+main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+#map {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+aside {
+  width: 400px;
+  border-left: 1px solid #33373f;
+  background: #1d2026;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#detail {
+  padding: 16px 18px;
+  border-bottom: 1px solid #33373f;
+  background: #1d2026;
+  min-height: 150px;
+  overflow-y: auto;
+}
+#detail .dimg { width: 100%; height: 170px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; display: block; }
+#detail .dname { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+#detail .dregion { font-size: 12px; color: #9a988f; margin-left: auto; }
+#detail .dwhat { font-size: 13px; color: #9a988f; margin: 8px 0 10px; line-height: 1.5; }
+#detail ul { padding-left: 18px; font-size: 13px; line-height: 1.7; margin-bottom: 8px; }
+#detail .note { margin-top: 10px; font-size: 12px; color: #e8b04b; }
+#detail .credit { font-size: 10px; color: #9a988f; opacity: 0.7; margin-top: 8px; }
+#list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 12px 20px;
+}
+.gh { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #9a988f; margin: 14px 6px 6px; display: flex; align-items: center; gap: 8px; }
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #e8e6e1;
+  font-size: 13.5px;
+  text-align: left;
+  transition: background 0.1s;
+}
+.item:hover { background: #24282f; }
+.item.sel { background: #24282f; border-color: #33373f; }
+.item input { accent-color: #1D9E75; width: 15px; height: 15px; cursor: pointer; flex: 0 0 15px; }
+.item.done .name { text-decoration: line-through; color: #9a988f; }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; }
+.name { flex: 1; }
+.leaflet-popup-content-wrapper { background: #1d2026; color: #e8e6e1; border-radius: 10px; }
+.leaflet-popup-tip { background: #1d2026; }
+.leaflet-popup-content { font-size: 13px; line-height: 1.5; margin: 12px 16px; }
+.leaflet-popup-content b { font-size: 14px; }
+.leaflet-popup-content .pw { color: #9a988f; display: block; margin-top: 4px; }
+@media (max-width: 760px) {
+  main { flex-direction: column; }
+  #map { flex: 0 0 45vh; }
+  aside { width: 100%; border-left: none; border-top: 1px solid #33373f; flex: 1; }
+}
 </style>
 </head>
 <body>
 <header>
   <h1>Vietnam · September 2026</h1>
-  <span class="sub">Nord → Süd · 4 Wochen (Woche 2: Arbeiten in Hoi An) · 28 Abenteuer-Spots!</span>
+  <span class="sub">Nord → Süd · 4 Wochen · 28 Spots</span>
   <span class="count" id="count"></span>
 </header>
 <main>
   <div id="map"></div>
   <aside>
-    <div id="detail"><span style="color:var(--muted);font-size:13px">Klick auf einen Marker oder Ort in der Liste …</span></div>
+    <div id="detail"><span style="color:#9a988f;font-size:13px">Klick auf Pin oder Ort …</span></div>
     <div id="list"></div>
   </aside>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const REGIONS = { S:{name:"Süden", color:"#D85A30"}, Z:{name:"Zentrum", color:"#7F77DD"}, N:{name:"Norden", color:"#1D9E75"} };
-
 const SPOTS = [
- {id:"hcmc", n:"Ho Chi Minh City (Saigon)", r:"S", lat:10.776, lng:106.7,
-  w:"Größte Stadt Vietnams – Megacity, Nachtleben, Geschichte. Idealer Startpunkt.",
-  t:["Rooftop-Bars & Bui Vien Walking Street","Cu-Chi-Tunnel (Halbtagestour)","War Remnants Museum","Fakes shoppen: Ben Thanh Market & Saigon Square"]},
- {id:"vungtau", n:"Vung Tau", r:"S", lat:10.327, lng:107.095,
-  w:"Küstenstadt nahe Saigon mit riesiger Christusstatue.",
-  t:["Christusstatue besteigen (800 Stufen)","Strandpromenade & Seafood","Tagestrip ab Saigon"]},
- {id:"mekong", n:"Mekong-Delta (Can Tho)", r:"S", lat:10.034, lng:105.788,
-  w:"Flusslabyrinth aus Kanälen, Obstgärten und schwimmenden Märkten.",
-  t:["Cai-Rang-Schwimmmarkt bei Sonnenaufgang","Bootstour durch kleine Kanäle","Homestay am Fluss"]},
- {id:"condao", n:"Con Dao", r:"S", lat:8.693, lng:106.609,
-  w:"Abgelegene Inselgruppe – Natur pur, kaum Touristen.",
-  t:["Schnorcheln & Tauchen","Meeresschildkröten (Sept. Nistsaison)","einsame Strände"],x:"Nur Flug/Fähre – 2–3 Tage extra"},
- {id:"phuquoc", n:"Phu Quoc", r:"S", lat:10.227, lng:103.964,
-  w:"Ferieninsel im Golf von Thailand.",
-  t:["Strände (Sao Beach)","längste Seilbahn der Welt","Nachtmarkt"],x:"September = Regenzeit dort"},
- {id:"muine", n:"Mui Ne", r:"S", lat:10.933, lng:108.287,
-  w:"Küstenort mit Wüstenfeeling – Sanddünen direkt am Meer.",
-  t:["Rote & weiße Dünen zum Sonnenaufgang","Kitesurfen","Fairy Stream"]},
- {id:"kega", n:"Ke Ga Beach", r:"S", lat:11.2, lng:108.7,
-  w:"Schöner Surf-Spot in Binh Thuan.",
-  t:["Surfen","Strände","Natur"]},
- {id:"nuinguon", n:"Nui Nguon", r:"S", lat:9.5, lng:105.0,
-  w:"Top-Surf-Spot im Südwesten Vietnams.",
-  t:["Surfen","Kitesurfen","Strände"]},
- {id:"quynhphuong", n:"Quỳnh Phương Beach", r:"S", lat:9.7, lng:105.2,
-  w:"Surf-Strand in der Mekong-Region.",
-  t:["Surfen","Strände","ruhig"]},
- {id:"twinjob", n:"Twin Lake (Ho Chi Minh)", r:"S", lat:10.77, lng:106.7,
-  w:"See mit Cliff Jumping Möglichkeiten in HCMC.",
-  t:["Cliff Jumping","Kajak","Natur nah bei HCMC"]},
- {id:"hoda", n:"Ho Da (Ho Chi Minh)", r:"S", lat:10.75, lng:106.68,
-  w:"Höhle mit Cliff Jumping nahe HCMC.",
-  t:["Cliff Jumping","Höhlenerkundung","Abenteuer"]},
- {id:"dalat", n:"Da Lat", r:"S", lat:11.94, lng:108.438,
-  w:"Kühle Bergstadt auf 1.500 m zwischen Pinienwäldern.",
-  t:["Canyoning an Wasserfällen (Top-Abenteuer!)","Rollertour zu Wasserfällen","Crazy House"]},
- {id:"nhatrang", n:"Nha Trang", r:"S", lat:12.238, lng:109.196,
-  w:"Strand- und Partystadt mit vorgelagerten Inseln.",
-  t:["Tauchen & Schnorcheln","Inselhopping","Beach Clubs"]},
- {id:"phongnha", n:"Phong Nha-Ke Bang NP", r:"Z", lat:17.591, lng:106.283,
-  w:"Heimat der größten Höhlensysteme der Welt, UNESCO-Welterbe.",
-  t:["Paradise Cave","Phong Nha Cave per Boot","Dark Cave: Zipline, Kajak & Schlammbad"]},
- {id:"baho", n:"Ba Ho Wasserfall", r:"Z", lat:11.8, lng:108.5,
-  w:"Wasserfallkomplex mit mehreren Becken & Cliff Jumping.",
-  t:["Cliff Jumping an Wasserfällen","Schwimmen","Naturpools"]},
- {id:"hue", n:"Hue", r:"Z", lat:16.463, lng:107.59,
-  w:"Alte Kaiserstadt am Parfümfluss.",
-  t:["Zitadelle & Verbotene Stadt","Kaisergräber per Roller","Hai-Van-Pass"]},
- {id:"danang", n:"Da Nang", r:"Z", lat:16.054, lng:108.202,
-  w:"Moderne Küstenstadt, Verkehrs-Hub für das ganze Zentrum.",
-  t:["My Khe Beach","Dragon Bridge (Feuershow)","Marble Mountains","gute Cafés"]},
- {id:"bana", n:"Ba Na Hills", r:"Z", lat:15.995, lng:107.988,
-  w:"Bergresort mit der berühmten Golden Bridge.",
-  t:["Golden Bridge (Brücke auf Riesenhänden)","Rekord-Seilbahn","Freizeitpark"],x:"Tagestrip ab Da Nang"},
- {id:"hoian", n:"Hoi An (Lantern City)", r:"Z", lat:15.88, lng:108.338,
-  w:"UNESCO-Altstadt voller Laternen – eine der schönsten Städte Asiens.",
-  t:["Altstadt bei Laternenlicht","Maßschneider","An Bang Beach per Roller","Kochkurs"],x:"Tipp als Basis für Arbeitswoche"},
- {id:"lyson", n:"Ly Son Island", r:"Z", lat:15.382, lng:109.113,
-  w:"Kleine Vulkaninsel vor Quang Ngai, kaum internationale Touristen.",
-  t:["Vulkankrater Thoi Loi","Schnorcheln","Knoblauchfelder"],x:"Fähre ab Sa Ky – 2 Tage extra"},
- {id:"ninhbinh", n:"Ninh Binh", r:"Z", lat:20.216, lng:105.936,
-  w:"Die "trockene Halong-Bucht" – Karstfelsen zwischen Reisfeldern.",
-  t:["Bootstour Tam Coc","Hang Mua Viewpoint (500 Stufen)","Radeln"]},
- {id:"hahabridge", n:"Ha Ha Land Bridge", r:"Z", lat:20.8, lng:106.5,
-  w:"Berühmte Kalkstein-Brücke zum Springen in Phong Nha-Region.",
-  t:["Cliff Jumping","Abenteuer","Spektakuläre Aussicht"]},
- {id:"hanoi", n:"Hanoi", r:"N", lat:21.028, lng:105.854,
-  w:"Hauptstadt: Chaos, Charme und das beste Streetfood des Landes.",
-  t:["Old Quarter","Train Street","Ta Hien "Beer Street"","Fakes shoppen"]},
- {id:"ninhbinh", n:"Ninh Binh", r:"N", lat:20.216, lng:105.936,
-  w:"Die "trockene Halong-Bucht" – Karstfelsen zwischen Reisfeldern.",
-  t:["Bootstour Tam Coc","Hang Mua Viewpoint","Radeln durch Reisfelder"]},
- {id:"sapa", n:"Sapa", r:"N", lat:22.336, lng:103.844,
-  w:"Bergstation im Nordwesten, Zentrum der Reisterrassen.",
-  t:["Trekking durch Reisterrassen (Sept. = goldene Ernte!)","Homestays","Fansipan per Seilbahn"]},
- {id:"hagiang", n:"Ha Giang & Ma-Pi-Leng-Pass", r:"N", lat:23.234, lng:105.415,
-  w:"Der spektakulärste Roller-Loop Vietnams, ganz im Norden.",
-  t:["3–4-Tage-Loop per Roller","Ma-Pi-Leng-Pass","Homestays","Lung-Cu-Flaggenturm"]},
- {id:"bangioc", n:"Ban-Gioc-Wasserfall", r:"N", lat:22.855, lng:106.723,
-  w:"Größter Wasserfall Vietnams, direkt an der Grenze zu China.",
-  t:["Bambusfloß bis an den Wasserfall","Nguom-Ngao-Höhle"],x:"Sehr abgelegen – 2 Tage extra"},
- {id:"catba", n:"Cat Ba & Lan-Ha-Bucht", r:"N", lat:20.727, lng:107.048,
-  w:"Insel in der Lan-Ha-Bucht – die ruhigere Alternative zur Halong-Bucht.",
-  t:["Deep Water Soloing (Klettern über dem Meer!)","Kajak","1–2-Tages-Cruise","Cannon Fort"]},
- {id:"halongcliff", n:"Ha Long Cliff Jumps", r:"N", lat:20.7, lng:107.0,
-  w:"Cliff Jumping Spots neben Cat Ba in der Ha Long Bay.",
-  t:["Cliff Jumping","Bootstouren","Abenteuer auf dem Wasser"]},
+ {id:"hanoi", n:"Hanoi", r:"N", lat:21.028, lng:105.854, w:"Hauptstadt: Chaos, Charme, Streetfood.", t:["Old Quarter","Train Street","Ta Hien Beer Street","Fakes shoppen"]},
+ {id:"sapa", n:"Sapa", r:"N", lat:22.336, lng:103.844, w:"Reisterrassen (Sept. = goldene Ernte!)", t:["Trekking","Homestays","Fansipan Seilbahn"]},
+ {id:"hagiang", n:"Ha Giang & Ma-Pi-Leng", r:"N", lat:23.234, lng:105.415, w:"Spektakulärster Roller-Loop.", t:["3-4-Tage-Loop","Ma-Pi-Leng-Pass","Homestays"]},
+ {id:"bangioc", n:"Ban-Gioc-Wasserfall", r:"N", lat:22.855, lng:106.723, w:"Größter Wasserfall Vietnams.", t:["Bambusfloß","Höhle"]},
+ {id:"catba", n:"Cat Ba & Lan-Ha", r:"N", lat:20.727, lng:107.048, w:"Deep Water Soloing & Cliff Jumping.", t:["Klettern über dem Meer","Kajak","2-Tages-Cruise"]},
+ {id:"halongcliff", n:"Ha Long Cliff Jumps", r:"N", lat:20.7, lng:107.0, w:"Cliff Jumping in Ha Long Bay.", t:["Cliff Jumping","Bootstouren"]},
+ {id:"ninhbinh", n:"Ninh Binh", r:"N", lat:20.216, lng:105.936, w:"Trockene Halong-Bucht.", t:["Bootstour","Hang Mua","Radeln"]},
+ {id:"phongnha", n:"Phong Nha-Ke Bang", r:"Z", lat:17.591, lng:106.283, w:"Größte Höhlensysteme der Welt.", t:["Paradise Cave","Dark Cave","Zipline & Kajak"]},
+ {id:"baho", n:"Ba Ho Wasserfall", r:"Z", lat:11.8, lng:108.5, w:"Cliff Jumping an Wasserfällen.", t:["Cliff Jumping","Schwimmen","Naturpools"]},
+ {id:"hahabridge", n:"Ha Ha Land Bridge", r:"Z", lat:20.8, lng:106.5, w:"Kalkstein-Brücke zum Springen.", t:["Cliff Jumping","Spektakuläre Aussicht"]},
+ {id:"hue", n:"Hue", r:"Z", lat:16.463, lng:107.590, w:"Alte Kaiserstadt am Parfümfluss.", t:["Zitadelle","Kaisergräber","Hai-Van-Pass"]},
+ {id:"danang", n:"Da Nang", r:"Z", lat:16.054, lng:108.202, w:"Moderne Küstenstadt.", t:["My Khe Beach","Dragon Bridge","Marble Mountains"]},
+ {id:"bana", n:"Ba Na Hills", r:"Z", lat:15.995, lng:107.988, w:"Golden Bridge auf Riesenhänden.", t:["Golden Bridge","Seilbahn","Freizeitpark"]},
+ {id:"hoian", n:"Hoi An (Lantern City)", r:"Z", lat:15.880, lng:108.338, w:"UNESCO-Altstadt - schönste Stadt!", t:["Altstadt bei Laternenlicht","Maßschneider","An Bang Beach","Kochkurs"]},
+ {id:"lyson", n:"Ly Son Island", r:"Z", lat:15.382, lng:109.113, w:"Kleine Vulkaninsel.", t:["Vulkankrater","Schnorcheln"]},
+ {id:"nhatrang", n:"Nha Trang", r:"S", lat:12.238, lng:109.196, w:"Strand- & Partystadt.", t:["Tauchen","Inselhopping","Beach Clubs"]},
+ {id:"dalat", n:"Da Lat", r:"S", lat:11.940, lng:108.438, w:"Kühle Bergstadt (1.500m).", t:["Canyoning an Wasserfällen","Rollertour","Crazy House"]},
+ {id:"muine", n:"Mui Ne", r:"S", lat:10.933, lng:108.287, w:"Sanddünen direkt am Meer.", t:["Rote & weiße Dünen","Kitesurfen","Fairy Stream"]},
+ {id:"kega", n:"Ke Ga Beach", r:"S", lat:11.2, lng:108.7, w:"Surf-Spot in Binh Thuan.", t:["Surfen","Strände"]},
+ {id:"nuinguon", n:"Nui Nguon", r:"S", lat:9.5, lng:105.0, w:"Top-Surf-Spot Südwesten.", t:["Surfen","Kitesurfen"]},
+ {id:"quynhphuong", n:"Quỳnh Phương Beach", r:"S", lat:9.7, lng:105.2, w:"Surf-Strand Mekong-Region.", t:["Surfen"]},
+ {id:"twinjob", n:"Twin Lake (HCMC)", r:"S", lat:10.77, lng:106.7, w:"Cliff Jumping in HCMC.", t:["Cliff Jumping","Kajak"]},
+ {id:"hoda", n:"Ho Da (HCMC)", r:"S", lat:10.75, lng:106.68, w:"Höhle mit Cliff Jumping.", t:["Cliff Jumping","Höhle"]},
+ {id:"hcmc", n:"Ho Chi Minh City", r:"S", lat:10.776, lng:106.700, w:"Größte Stadt - Megacity, Party.", t:["Rooftop-Bars","Cu-Chi-Tunnel","War Remnants","Fakes shoppen"]},
+ {id:"vungtau", n:"Vung Tau", r:"S", lat:10.327, lng:107.095, w:"Küstenstadt mit Christusstatue.", t:["Statue besteigen","Strandpromenade"]},
+ {id:"mekong", n:"Mekong-Delta", r:"S", lat:10.034, lng:105.788, w:"Flusslabyrinth & Schwimmmarkt.", t:["Cai-Rang-Markt","Bootstour","Homestay"]},
+ {id:"condao", n:"Con Dao", r:"S", lat:8.693, lng:106.609, w:"Abgelegene Inselgruppe.", t:["Schnorcheln","Schildkröten"]},
+ {id:"phuquoc", n:"Phu Quoc", r:"S", lat:10.227, lng:103.964, w:"Ferieninsel im Golf.", t:["Strände","Seilbahn"]},
 ];
 
-const map = L.map("map", {zoomControl:true}).setView([16.2, 106.4], 6);
+const map = L.map("map").setView([16.2, 106.4], 6);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  maxZoom:19
+  attribution: '&copy; OpenStreetMap contributors',
+  maxZoom: 19
 }).addTo(map);
 
-const markers = {};
+const markers = {}, visited = new Set(JSON.parse(localStorage.getItem("vn-visited") || "[]"));
 let selectedId = null;
-const visited = new Set(JSON.parse(localStorage.getItem("vn-visited") || "[]"));
-
-function pinIcon(color, sel){
-  return L.divIcon({
-    className:"",
-    html:`<div class="pinmark${sel ? " sel" : ""}" style="background:${color}"></div>`,
-    iconSize: sel ? [28,28] : [22,22],
-    iconAnchor: sel ? [6,28] : [4,22]
-  });
-}
 
 SPOTS.forEach(s => {
-  const m = L.marker([s.lat, s.lng], {icon: pinIcon(REGIONS[s.r].color, false), title: s.n});
-  m.bindPopup(`<img src="img/${s.id}.jpg" alt="${s.n}" style="width:230px;height:125px;object-fit:cover;border-radius:8px;display:block;margin-bottom:8px" onerror="this.remove()"><b>${s.n}</b><span class="pw">${s.w}</span>`);
-  m.on("click", () => select(s.id, false));
+  const m = L.circleMarker([s.lat, s.lng], {radius: 6, fillColor: REGIONS[s.r].color, weight: 2, opacity: 1, fillOpacity: 0.9, color: '#fff'});
+  m.bindPopup(`<b>${s.n}</b><span class="pw">${s.w}</span>`);
+  m.on("click", () => select(s.id));
   m.addTo(map);
   markers[s.id] = m;
 });
 
-function renderList(){
+function renderList() {
   const el = document.getElementById("list");
   el.innerHTML = "";
-  ["S","Z","N"].forEach(r => {
+  ["N", "Z", "S"].forEach(r => {
     const h = document.createElement("div");
     h.className = "gh";
     h.innerHTML = `<span class="dot" style="background:${REGIONS[r].color}"></span>${REGIONS[r].name}`;
@@ -196,7 +174,7 @@ function renderList(){
     SPOTS.filter(s => s.r === r).forEach(s => {
       const b = document.createElement("div");
       b.className = "item" + (s.id === selectedId ? " sel" : "") + (visited.has(s.id) ? " done" : "");
-      b.innerHTML = `<input type="checkbox" ${visited.has(s.id) ? "checked" : ""} title="abhaken">` +
+      b.innerHTML = `<input type="checkbox" ${visited.has(s.id) ? "checked" : ""}>` +
         `<span class="dot" style="background:${REGIONS[s.r].color}"></span><span class="name">${s.n}</span>`;
       b.querySelector("input").addEventListener("click", e => {
         e.stopPropagation();
@@ -204,36 +182,34 @@ function renderList(){
         localStorage.setItem("vn-visited", JSON.stringify([...visited]));
         renderList(); renderCount();
       });
-      b.addEventListener("click", () => select(s.id, true));
+      b.addEventListener("click", () => select(s.id));
       el.appendChild(b);
     });
   });
 }
 
-function renderCount(){
-  document.getElementById("count").textContent = `${visited.size} / ${SPOTS.length} abgehakt`;
+function renderCount() {
+  document.getElementById("count").textContent = `${visited.size} / ${SPOTS.length}`;
 }
 
-function select(id, fly){
+function select(id) {
   const s = SPOTS.find(x => x.id === id);
-  if(!s) return;
-  if(selectedId && markers[selectedId]) markers[selectedId].setIcon(pinIcon(REGIONS[SPOTS.find(x=>x.id===selectedId).r].color, false));
+  if (!s) return;
   selectedId = id;
-  markers[id].setIcon(pinIcon(REGIONS[s.r].color, true));
-  if(fly){ map.flyTo([s.lat, s.lng], Math.max(map.getZoom(), 9), {duration:.8}); markers[id].openPopup(); }
   document.getElementById("detail").innerHTML =
     `<img class="dimg" src="img/${s.id}.jpg" alt="${s.n}" onerror="this.style.display='none'">` +
     `<div class="dname"><span class="dot" style="background:${REGIONS[s.r].color}"></span>${s.n}<span class="dregion">${REGIONS[s.r].name}</span></div>` +
     `<div class="dwhat">${s.w}</div>` +
     `<ul>${s.t.map(x => `<li>${x}</li>`).join("")}</ul>` +
-    (s.x ? `<div class="note">⚠️ ${s.x}</div>` : "") +
-    `<div class="credit">Foto: Wikipedia / Wikimedia Commons</div>`;
+    `<div class="credit">Foto: Wikipedia</div>`;
+  map.flyTo([s.lat, s.lng], 9, {duration: 0.8});
+  if (markers[id]) markers[id].openPopup();
   renderList();
 }
 
 renderList();
 renderCount();
-select("hcmc", false);
+select("hcmc");
 </script>
 </body>
 </html>
