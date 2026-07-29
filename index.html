@@ -124,10 +124,10 @@ const SPOTS = [
  {id:"halongcliff", n:"Ha Long Cliff Jumps", r:"N", lat:20.7, lng:107.0, w:"Cliff Jumping in Ha Long Bay.", t:["Cliff Jumping","Bootstouren"]},
  {id:"ninhbinh", n:"Ninh Binh", r:"N", lat:20.216, lng:105.936, w:"Trockene Halong-Bucht.", t:["Bootstour","Hang Mua","Radeln"]},
  {id:"phongnha", n:"Phong Nha-Ke Bang", r:"Z", lat:17.591, lng:106.283, w:"Größte Höhlensysteme der Welt.", t:["Paradise Cave","Dark Cave","Zipline & Kajak"]},
- {id:"baho", n:"Ba Ho Wasserfall", r:"Z", lat:11.8, lng:108.5, w:"Cliff Jumping an Wasserfällen.", t:["Cliff Jumping","Schwimmen","Naturpools"]},
+ {id:"baho", n:"Ba Ho Wasserfall", r:"S", lat:12.583, lng:109.150, w:"3 Naturpools mit Cliff Jumping, ca. 25 km nördlich von Nha Trang.", t:["Cliff Jumping (3–10 m Sprungfelsen)","Schwimmen in Naturpools","Felsen-Kraxelei zum obersten Pool"]},
  {id:"hahabridge", n:"Ha Ha Land Bridge", r:"Z", lat:20.8, lng:106.5, w:"Kalkstein-Brücke zum Springen.", t:["Cliff Jumping","Spektakuläre Aussicht"]},
  {id:"hue", n:"Hue", r:"Z", lat:16.463, lng:107.590, w:"Alte Kaiserstadt am Parfümfluss.", t:["Zitadelle","Kaisergräber","Hai-Van-Pass"]},
- {id:"danang", n:"Da Nang", r:"Z", lat:16.054, lng:108.202, w:"Moderne Küstenstadt.", t:["My Khe Beach","Dragon Bridge","Marble Mountains"]},
+ {id:"danang", n:"Da Nang", r:"Z", lat:16.054, lng:108.202, w:"Moderne Küstenstadt – auch bester Surf-Einstieg Vietnams.", t:["Surfen am My Khe Beach (Boards & Kurse vor Ort)","Dragon Bridge","Marble Mountains"]},
  {id:"bana", n:"Ba Na Hills", r:"Z", lat:15.995, lng:107.988, w:"Golden Bridge auf Riesenhänden.", t:["Golden Bridge","Seilbahn","Freizeitpark"]},
  {id:"hoian", n:"Hoi An (Lantern City)", r:"Z", lat:15.880, lng:108.338, w:"UNESCO-Altstadt - schönste Stadt!", t:["Altstadt bei Laternenlicht","Maßschneider","An Bang Beach","Kochkurs"]},
  {id:"lyson", n:"Ly Son Island", r:"Z", lat:15.382, lng:109.113, w:"Kleine Vulkaninsel.", t:["Vulkankrater","Schnorcheln"]},
@@ -136,7 +136,7 @@ const SPOTS = [
  {id:"muine", n:"Mui Ne", r:"S", lat:10.933, lng:108.287, w:"Sanddünen direkt am Meer.", t:["Rote & weiße Dünen","Kitesurfen","Fairy Stream"]},
  {id:"kega", n:"Ke Ga Beach", r:"S", lat:11.2, lng:108.7, w:"Surf-Spot in Binh Thuan.", t:["Surfen","Strände"]},
  {id:"nuinguon", n:"Nui Nguon", r:"S", lat:9.5, lng:105.0, w:"Top-Surf-Spot Südwesten.", t:["Surfen","Kitesurfen"]},
- {id:"quynhphuong", n:"Quỳnh Phương Beach", r:"S", lat:9.7, lng:105.2, w:"Surf-Strand Mekong-Region.", t:["Surfen"]},
+ {id:"quynhphuong", n:"Quỳnh Phương Beach", r:"Z", lat:19.24, lng:105.73, w:"Surf-Strand in Nghệ An (Nordzentral-Küste), wenig Touristen.", t:["Surfen","Lokale Strandatmosphäre"]},
  {id:"twinjob", n:"Twin Lake (HCMC)", r:"S", lat:10.77, lng:106.7, w:"Cliff Jumping in HCMC.", t:["Cliff Jumping","Kajak"]},
  {id:"hoda", n:"Ho Da (HCMC)", r:"S", lat:10.75, lng:106.68, w:"Höhle mit Cliff Jumping.", t:["Cliff Jumping","Höhle"]},
  {id:"hcmc", n:"Ho Chi Minh City", r:"S", lat:10.776, lng:106.700, w:"Größte Stadt - Megacity, Party.", t:["Rooftop-Bars","Cu-Chi-Tunnel","War Remnants","Fakes shoppen"]},
@@ -147,8 +147,9 @@ const SPOTS = [
 ];
 
 const map = L.map("map").setView([16.2, 106.4], 6);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; OpenStreetMap contributors',
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: "abcd",
   maxZoom: 19
 }).addTo(map);
 
