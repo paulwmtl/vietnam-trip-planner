@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vietnam Packliste · September 2026</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:#14161a; color:#e8e6e1; line-height:1.5;
+  padding-bottom:60px;
+}
+header {
+  position:sticky; top:0; z-index:10;
+  background:#14161a; border-bottom:1px solid #33373f;
+  padding:14px 22px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+header h1 { font-size:19px; font-weight:600; }
+header .sub { font-size:13px; color:#9a988f; }
+header .right { margin-left:auto; display:flex; align-items:center; gap:14px; }
+header .count { font-size:13px; color:#9a988f; }
+a.nav { color:#7F77DD; text-decoration:none; font-size:13px; border:1px solid #33373f; padding:6px 12px; border-radius:8px; }
+a.nav:hover { background:#24282f; }
+.wrap { max-width:820px; margin:0 auto; padding:0 22px; }
+.sec { margin-top:28px; }
+.sec > h2 {
+  font-size:14px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+  padding:9px 14px; border-radius:8px; color:#14161a; display:flex; align-items:center; gap:10px;
+}
+.sec .secnote { font-size:12.5px; color:#9a988f; margin:8px 4px 4px; }
+.grp { font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:#9a988f; margin:16px 4px 6px; }
+.item {
+  display:flex; align-items:flex-start; gap:11px;
+  padding:9px 12px; border-radius:8px; cursor:pointer;
+  border:1px solid transparent; transition:background .1s;
+}
+.item:hover { background:#1d2026; }
+.item input { accent-color:#1D9E75; width:17px; height:17px; margin-top:2px; cursor:pointer; flex:0 0 17px; }
+.item .txt { flex:1; font-size:14.5px; }
+.item .note { display:block; font-size:12.5px; color:#9a988f; margin-top:2px; }
+.item.done .txt { text-decoration:line-through; color:#6f6d67; }
+.item.done .note { color:#5a5852; }
+.warn {
+  background:#2a2418; border-left:3px solid #e8b04b; border-radius:0 8px 8px 0;
+  padding:12px 16px; margin:14px 0; font-size:13.5px; color:#e8d3a8;
+}
+.warn b { color:#e8b04b; }
+.info {
+  background:#1d2026; border-radius:8px; padding:12px 16px; margin:14px 0; font-size:13.5px; color:#c9c7c0;
+}
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13.5px; }
+th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #2a2e35; }
+th { color:#9a988f; font-weight:500; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+.reset { margin:34px 0 10px; }
+.reset button {
+  background:transparent; border:1px solid #33373f; color:#9a988f;
+  padding:8px 14px; border-radius:8px; font-size:13px; cursor:pointer; font-family:inherit;
+}
+.reset button:hover { border-color:#D85A30; color:#D85A30; }
+@media (max-width:600px) {
+  .wrap { padding:0 14px; }
+  header { padding:12px 14px; }
+  header h1 { font-size:17px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Packliste Vietnam</h1>
+  <span class="sub">4 Wochen · September · 40 l + Daypack</span>
+  <span class="right">
+    <span class="count" id="count"></span>
+    <a class="nav" href="index.html">← Karte</a>
+  </span>
+</header>
+
+<div class="wrap">
+
+<div class="sec">
+  <h2 style="background:#e8b04b">Vor dem Abflug erledigen</h2>
+  <div class="warn"><b>Zeitkritisch:</b> Tollwut braucht 3 Termine über 3–4 Wochen, Japanische Enzephalitis 2 Dosen im Abstand von 28 Tagen. Der Termin beim Reisemediziner muss <b>diese Woche</b> stehen.</div>
+  <div id="s-vorab"></div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#f0a0a0">Impfungen besprechen</h2>
+  <div class="secnote">Keine medizinische Beratung – Gesprächsgrundlage für Reisemediziner oder Tropeninstitut.</div>
+  <div id="s-impf"></div>
+  <div class="info"><b>Malaria:</b> In deinen Regionen keine Prophylaxe nötig. <b>Dengue</b> ist das realistischere Thema – September ist Hochsaison und die Dengue-Mücke sticht <b>tagsüber</b>. Mückenschutz am Tag ist wichtiger als das Netz nachts.</div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#7F77DD">Daypack · Handgepäck (~20 l)</h2>
+  <div class="secnote">Alle Lithium-Akkus müssen hier rein – Drohne, Kamera, Powerbank, Laptops. Wertsachen bleiben bei dir.</div>
+  <div id="s-hand"></div>
+  <div class="warn"><b>VietJet und Bamboo wiegen Handgepäck bei Inlandsflügen wirklich</b> – Limit meist 7 kg. Zwei Laptops plus Drohne liegen genau an der Grenze. Trick: schwere Jacke am Körper tragen, dann zählt sie nicht.</div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#1D9E75">40 l Rucksack · aufgegeben</h2>
+  <div class="secnote">Das Taschenmesser darf nur hier rein. Belegt beim Abflug ca. 25 l – Reserve für Shopping: ~15 l.</div>
+  <div id="s-haupt"></div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#D85A30">Reiseapotheke</h2>
+  <div class="secnote">Tropenwunden infizieren schnell – bei Cliff Jumping und Roller kein Randthema.</div>
+  <div id="s-apo"></div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#85B7EB">Shopping in Vietnam</h2>
+  <div class="secnote">Route Nord→Süd endet in Saigon – Sperriges bewusst ans Ende legen.</div>
+  <table>
+    <tr><th>Kauf</th><th>Volumen</th><th>Wann</th></tr>
+    <tr><td>Anzughose (Maß)</td><td>1,5 l</td><td>Hoi An → verschicken</td></tr>
+    <tr><td>3–4 Polos</td><td>3 l</td><td>Hoi An verschicken / Saigon</td></tr>
+    <tr><td>Birkenstocks</td><td>4 l</td><td>Saigon, am Flug tragen</td></tr>
+    <tr><td>Arc'teryx</td><td>2–3 l</td><td>Saigon, am Flug tragen</td></tr>
+  </table>
+  <div id="s-shop"></div>
+  <div class="info"><b>Rückflug-Trick:</b> Birkenstocks an den Füßen, Arc'teryx am Körper – damit verschwinden ~6 l aus der Rechnung.</div>
+  <div class="warn"><b>Erwartung justieren:</b> Echte Arc'teryx und Birkenstock kosten in Vietnam wegen Einfuhrzoll eher <i>mehr</i> als in Europa. Billig sind sehr gute Fälschungen. Der echte Preisvorteil liegt bei <b>Maßschneiderei</b> – also genau bei deiner Anzughose.</div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#F0997B">Drohne · vorher entscheiden</h2>
+  <div class="warn"><b>Vietnam ist eines der striktesten Länder Asiens für Drohnen.</b> Flüge brauchen offiziell eine Genehmigung des Verteidigungsministeriums, die als Tourist praktisch nicht zu bekommen ist. Am Zoll werden Drohnen gelegentlich einbehalten. <b>Ha Giang ist Grenzgebiet zu China</b> – dort ist Fliegen keine Ordnungswidrigkeit mehr. Auch über der Ha-Long-/Lan-Ha-Bucht gibt es Einschränkungen. Ausgerechnet deine spektakulärsten Spots sind die heikelsten.</div>
+  <div id="s-drohne"></div>
+</div>
+
+<div class="sec">
+  <h2 style="background:#B4B2A9">Bewusst nicht einpacken</h2>
+  <div class="secnote">Vor Ort billiger oder ohnehin vorhanden.</div>
+  <div id="s-nicht"></div>
+</div>
+
+<div class="reset">
+  <button id="reset">Alle Haken zurücksetzen</button>
+</div>
+
+</div>
+
+<script>
+const DATA = {
+  "s-vorab": [
+    ["Termin Reisemediziner / Tropeninstitut", "Zeitkritisch – siehe Warnung oben"],
+    ["Reisepass prüfen", "muss 6 Monate über die Reise hinaus gültig sein"],
+    ["Visum klären", "Deutsche aktuell 45 Tage visumfrei – Regeln selbst gegenchecken, sie ändern sich"],
+    ["Internationaler Führerschein mit Klasse A", "ohne den zahlt keine Versicherung bei einem Rollerunfall – Bürgeramt, wenige Tage"],
+    ["Reiseversicherung mit Adventure-Einschluss", "Standardpolicen schließen Motorrad, Cliff Jumping, Canyoning und Klettern oft aus – Ausschlussliste wirklich lesen"],
+    ["Kreditkarte ohne Fremdgebühren + zweite Karte", "getrennt aufbewahren"],
+    ["Dokumente digital in die Cloud + Papierkopie", ""],
+    ["Google Maps offline laden, Grab-App installieren", ""],
+    ["Auslandskrankenschutz-Notfallnummer speichern", ""]
+  ],
+  "s-impf": [
+    ["Standard auffrischen: Tetanus, Diphtherie, Polio, MMR", "Tetanus ist bei Schürfwunden vom Roller real"],
+    ["Hepatitis A", "Essen und Wasser – praktisch immer empfohlen"],
+    ["Typhus", "Streetfood, Homestays, ländliche Gegenden"],
+    ["Hepatitis B", "bei 4 Wochen und möglicher medizinischer Behandlung meist empfohlen"],
+    ["Tollwut", "für dich besonders relevant: Roller im abgelegenen Ha Giang, Straßenhunde, Affen an den Marble Mountains und auf Cat Ba. Das Immunglobulin für die Nachbehandlung ist in Nordvietnam kaum verfügbar – eine Vorimpfung verschafft dir Zeit"],
+    ["Japanische Enzephalitis", "Reisfelder, ländliche Übernachtungen, September = Mückenhochsaison. Bei Sapa, Ha Giang und Mekong ansprechen"],
+    ["Gelbfieber: NICHT erforderlich", "für Vietnam nicht nötig"]
+  ],
+  "s-hand": [
+    ["Laptop 1 (Arbeit) + Netzteil", ""],
+    ["Laptop 2 + Netzteil", "zusammen ~2,7 kg – dein größter Einzelposten"],
+    ["DJI Drohne + Controller + Akkus", "Akkus einzeln isoliert – siehe Drohnen-Abschnitt"],
+    ["DJI Kamera + Akkus + Mounts", ""],
+    ["Powerbank", "max. 100 Wh ohne Anmeldung, Handgepäck-Pflicht"],
+    ["Kabel, USB-C, Mehrfachstecker", "kein Reiseadapter nötig – deutsche Eurostecker passen in Vietnam"],
+    ["Kopfhörer", "Nachtbusse und Calls"],
+    ["Stirnlampe", "statt Taschenlampe – Hände frei in den Phong-Nha-Höhlen"],
+    ["Sonnenbrille mit Band", "sonst weg beim ersten Sprung"],
+    ["Dokumente, Bargeld, Karten", ""],
+    ["Journal", "von Hand – dafür gibt es keinen guten Ersatz"],
+    ["Reiseapotheke (Kernteil)", ""],
+    ["1 T-Shirt + Unterwäsche", "falls der Hauptrucksack verloren geht"],
+    ["Ohrstöpsel + Schlafmaske", "Nachtbusse"]
+  ],
+  "s-haupt": [
+    ["4× T-Shirt", "Merino oder Synthetik, trocknet schnell"],
+    ["1× Longsleeve", "Sonnenschutz, Mücken, Tempel"],
+    ["2× kurze Hose", ""],
+    ["1× leichte lange Hose", "Tempel, Abends, und Pflicht auf dem Roller"],
+    ["1× Badehose die fest sitzt", "bei 8-m-Sprüngen kein Detail"],
+    ["1× Fleece oder Hoodie", "Pflicht: Sapa und Ha Giang nachts 10–15 °C, Nachtbusse eiskalt"],
+    ["1× leichte Regenjacke", ""],
+    ["Regencape", "alternativ für 1–2 € vor Ort kaufen, auf dem Roller praktischer als eine Jacke"],
+    ["Unterwäsche 5×, Socken 3×", "Wäsche kostet 1–2 €/kg und ist über Nacht fertig"],
+    ["Sneaker / Trailrunner", "am Flug tragen"],
+    ["Flipflops", ""],
+    ["Wasserschuhe oder alte Sneaker", "Felsen am Ba Ho und in der Dark Cave sind spiegelglatt"],
+    ["Cap und Buff / Halstuch", "Staub auf dem Ha-Giang-Loop"],
+    ["Dry Bag 10–20 l", "wichtigstes Einzelteil: Kajak, Boote, Höhlen, Regenzeit"],
+    ["2× Mikrofaser-Handtuch", "eins fürs Wasser, eins fürs Duschen"],
+    ["Taschenmesser", "darf NUR in den aufgegebenen Rucksack"],
+    ["Kulturbeutel", "Reisegrößen – Nachschub gibt es überall"],
+    ["Sonnencreme LSF 50 von zuhause", "in Vietnam teuer und meist mit Whitening-Zusatz"],
+    ["Packsäcke / Kompressionsbeutel", ""],
+    ["Faltbarer Beutel", "zweites Gepäckstück für den Rückflug ohne Umpacken"],
+    ["Blasenpflaster und Tape", "Deep Water Soloing geht auf die Hände"]
+  ],
+  "s-apo": [
+    ["Desinfektion (Jodlösung), Wundsalbe, Pflaster", "in mehreren Größen"],
+    ["Elektrolytpulver", "Durchfall und Hitze"],
+    ["Loperamid und Kohletabletten", ""],
+    ["Schmerz- und Fiebermittel", ""],
+    ["Mückenspray mit 30–50 % DEET", "tagsüber wegen Dengue"],
+    ["Reisetabletten", "Serpentinen am Ma-Pi-Leng-Pass"],
+    ["Antihistaminikum", ""],
+    ["Antibiotikum gegen Reisedurchfall", "auf Rezept vom Arzt mitgeben lassen"]
+  ],
+  "s-shop": [
+    ["Hoi An Woche 2: Maßschneider aufsuchen", "Anzughose 30–60 €, Anprobe in 2–3 Tagen – der beste Kauf auf deiner Liste"],
+    ["Maßsachen nach Hause schicken lassen", "30–50 € – sonst schleppst du sie zwei Wochen über Bergpässe"],
+    ["Polos", "Hoi An oder Saigon"],
+    ["Birkenstocks", "letzte Tage in Saigon, am Rückflug tragen"],
+    ["Arc'teryx", "letzte Tage in Saigon, am Rückflug tragen"],
+    ["Fakes: Ben Thanh Market und Saigon Square", "letzte Woche, direkt vor dem Heimflug"]
+  ],
+  "s-drohne": [
+    ["Entschieden: Drohne kommt mit / bleibt zuhause", ""],
+    ["Falls mit: unauffällig verpackt, Akkus einzeln", ""],
+    ["Nicht auspacken in Ha Giang (Grenzgebiet China)", ""],
+    ["Einschränkungen Ha-Long-/Lan-Ha-Bucht beachten", ""]
+  ],
+  "s-nicht": [
+    ["Handtücher (große)", "haben die Hotels"],
+    ["Shampoo und Duschgel in Großflaschen", "überall billig nachkaufbar"],
+    ["Zu viele Klamotten", "Wäsche 1–2 €/kg, über Nacht fertig"],
+    ["Reiseadapter", "deutsche Stecker passen in Vietnam"],
+    ["Dickes Buch", "bei zwei Laptops dabei lieber digital lesen"],
+    ["Extra Flipflops", "2 € an jeder Ecke"]
+  ]
+};
+
+const KEY = "vn-pack";
+const done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+let total = 0;
+
+function render() {
+  total = 0;
+  Object.entries(DATA).forEach(([secId, items]) => {
+    const host = document.getElementById(secId);
+    if (!host) return;
+    host.innerHTML = "";
+    items.forEach((it, i) => {
+      const [label, note] = it;
+      const id = secId + ":" + i;
+      total++;
+      const row = document.createElement("label");
+      row.className = "item" + (done.has(id) ? " done" : "");
+      row.innerHTML =
+        '<input type="checkbox"' + (done.has(id) ? " checked" : "") + '>' +
+        '<span class="txt">' + label +
+        (note ? '<span class="note">' + note + '</span>' : '') +
+        '</span>';
+      row.querySelector("input").addEventListener("change", () => {
+        done.has(id) ? done.delete(id) : done.add(id);
+        localStorage.setItem(KEY, JSON.stringify([...done]));
+        render();
+      });
+      host.appendChild(row);
+    });
+  });
+  document.getElementById("count").textContent = done.size + " / " + total;
+}
+
+document.getElementById("reset").addEventListener("click", () => {
+  done.clear();
+  localStorage.setItem(KEY, "[]");
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
